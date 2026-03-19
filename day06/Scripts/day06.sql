@@ -627,7 +627,16 @@ GROUP BY TBP.PRODUCT_PRICE
 HAVING TBP.PRODUCT_PRICE = MAX(TBP.PRODUCT_PRICE);
 
 -- 42) '정유리'와 '강민구'가 주문한 상품들을 조회하되 중복 없이 출력
+SELECT DISTINCT TBP.PRODUCT_NAME ,TBU.USER_NAME 
+FROM TBL_ORDER TBO
+JOIN TBL_PRODUCT TBP ON TBO.PRODUCT_ID = TBP.ID
+JOIN TBL_USER TBU ON TBO.USER_ID = TBU.ID AND TBU.USER_NAME IN ('정유리','강민구');
 -- 43) '강북구'에 사는 여성 구매자들의 주문 내역을 조회
+SELECT * 
+FROM TBL_ORDER TBO
+JOIN TBL_USER TBU ON TBU.ID = TBO.USER_ID
+JOIN TBL_PRODUCT TBP ON TBP.ID = TBO.PRODUCT_ID;
+
 -- 44) 구매자 이름과 그가 주문한 상품 이름, 주문 상태를 함께 출력
 -- 45) 모든 상품의 평균 가격을 구하고, 평균 이상 가격인 상품들을 조회
 -- 46) '스파오' 브랜드 상품의 재고를 50개 이하인 경우 재고를 100개로 수정
